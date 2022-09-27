@@ -13,7 +13,11 @@
         <button class="btn btn-primary btn-sm" title="Editar">
           <i class="fa fa-pencil-alt"></i>
         </button>
-        <button class="btn btn-danger btn-sm" title="Deletar">
+        <button
+          class="btn btn-danger btn-sm"
+          title="Deletar"
+          @click="deletar(user)"
+        >
           <i class="fa fa-trash"></i>
         </button>
       </li>
@@ -37,6 +41,15 @@ export default {
       this.users = response.data;
     });
   },
+  methods: {
+    deletar(user) {
+      axios.delete(`${config.url}/users/${user.id}`, user).then(response => {
+        const index = this.users.findIndex(u => u.id === user.id)
+        this.users.splice(index, 1)
+        console.log(response)
+      })
+    },
+  },
 };
 </script>
 
@@ -45,7 +58,8 @@ export default {
   width: 40%;
 }
 
-#name, #age {
+#name,
+#age {
   width: 50%;
 }
 

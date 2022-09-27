@@ -1,25 +1,18 @@
 {
-    "users": [
-        {
-            "name": "Gabriel Henrique",
-            "age": 22,
-            "sexo": "masculino",
-            "email": "gabriel.email@email.com",
-            "id": 1
-        },
-        {
-            "name": "Matheus Augusto",
-            "age": 18,
-            "sexo": "masculino",
-            "email": "matheus.email@email.com",
-            "id": 2
-        },
-        {
-            "name": "Ana Clara",
-            "age": 20,
-            "sexo": "feminino",
-            "email": "ana_clara.email@email.com",
-            "id": 3
-        }
-    ]
+  "users": [
+    {
+      "name": "Gabriel Henrique",
+      "age": 22,
+      "sexo": "masculino",
+      "email": "gabriel.email@email.com",
+      "id": 1
+    },
+    {
+      "name": "Ana Clara",
+      "age": 20,
+      "sexo": "feminino",
+      "email": "ana_clara.email@email.com",
+      "id": 3
+    }
+  ]
 }
