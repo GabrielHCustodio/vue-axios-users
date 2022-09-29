@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar-header />
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mt-3">
       <h1>Lista de usuários</h1>
     </div>
     <list-users />

@@ -1,16 +1,24 @@
 <template>
   <div>
-    <navbar-header/>
-    <h1>About</h1>
+    <navbar-header />
+    <div class="d-flex align-items-center justify-content-center mt-3">
+      <div class="row">
+      <h1 class="text-center mb-3">Cadastrar Usuário</h1>
+      <form-user/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import NavbarHeader from '@/components/NavbarHeader.vue'
+import FormUser from "@/components/FormUser.vue";
+import NavbarHeader from "@/components/NavbarHeader.vue";
+
 export default {
-  name: 'AboutView',
+  name: "AboutView",
   components: {
-    NavbarHeader
-  }
-}
+    FormUser,
+    NavbarHeader,
+  },
+};
 </script>

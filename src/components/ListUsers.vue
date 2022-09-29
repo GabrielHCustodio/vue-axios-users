@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list-group d-flex align-items-center justify-content-center">
+    <ul class="list-group d-flex align-items-center justify-content-center mt-3">
       <li
         class="list-group-item d-flex align-items-center"
         id="list"
