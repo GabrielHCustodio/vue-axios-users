@@ -2,9 +2,9 @@
   <div>
     <navbar-header />
     <div class="d-flex align-items-center justify-content-center mt-3">
-      <div class="row">
-      <h1 class="text-center mb-3">Cadastrar Usuário</h1>
-      <form-user/>
+      <div>
+        <h1 class="text-center mb-3">Cadastrar Usuário</h1>
+        <form-user/>
       </div>
     </div>
   </div>

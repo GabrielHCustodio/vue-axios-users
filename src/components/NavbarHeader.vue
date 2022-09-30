@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" id="navbar">
-      <a class="navbar-brand" href="#">Usuários cadastrados</a>
+      <a class="navbar-brand" href="#">Aplicativo de usuários</a>
       <div class="d-flex justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item">
