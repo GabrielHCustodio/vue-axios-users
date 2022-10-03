@@ -15,6 +15,14 @@
       "email": "ana_clara.email@email.com",
       "telephone": "(35)99999-8888",
       "id": 3
+    },
+    {
+      "name": "Matheus",
+      "age": 8,
+      "email": "matheus@email.com",
+      "sex": "Masculino",
+      "telephone": "(35)98765-4321",
+      "id": 4
     }
   ]
 }

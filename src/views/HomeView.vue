@@ -9,6 +9,10 @@
 </template>
 
 <script>
+import axios from "axios";
+import config from "@/config/config";
+import { mapMutations } from 'vuex';
+
 import ListUsers from '@/components/ListUsers.vue'
 import NavbarHeader from '@/components/NavbarHeader.vue'
 
@@ -17,6 +21,14 @@ export default {
   components: {
     ListUsers,
     NavbarHeader
+  },
+  methods: {
+    ...mapMutations(['setUsers'])
+  },
+  created() {
+    axios.get(`${config.url}/users`).then((response) => {
+      this.setUsers(response.data)
+    });
   }
 }
 </script>

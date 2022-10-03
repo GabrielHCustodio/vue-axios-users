@@ -7,7 +7,7 @@
         class="form-control"
         placeholder="Nome completo..."
         required
-        v-model="user.nameUser"
+        v-model="user.name"
       />
     </div>
     <div class="col-sm-5">
@@ -17,7 +17,7 @@
         class="form-control"
         placeholder="Seu melhor email..."
         required
-        v-model="user.emailUser"
+        v-model="user.email"
       />
     </div>
     <div class="col-sm-3">
@@ -27,7 +27,7 @@
         class="form-control"
         placeholder="Telefone de contato com DDD..."
         required
-        v-model="user.telephoneUser"
+        v-model="user.telephone"
       />
     </div>
     <div class="col-sm-3">
@@ -37,40 +37,48 @@
         class="form-control"
         placeholder="Informe sua idade..."
         required
-        v-model="user.ageUser"
+        v-model="user.age"
       />
     </div>
     <div class="col-sm-4">
       <label class="form-label">Informe seu sexo</label>
-      <select class="form-select" v-model="user.sexUser" required>
+      <select class="form-select" v-model="user.sex" required>
         <option selected disabled value="">Selecione</option>
         <option value="Masculino">Masculino</option>
         <option value="Feminino">Feminino</option>
       </select>
     </div>
     <div class="col-sm-3 d-flex align-items-center justify-content-center mt-5">
-      <button class="btn btn-primary" type="submit" @click="saveUser">Cadastrar usuário</button>
+      <button class="btn btn-primary" type="submit" @click="saveUser">
+        Cadastrar usuário
+      </button>
     </div>
   </form>
 </template>
 
 <script>
+import axios from "axios";
+import config from "@/config/config";
+
 export default {
   name: "FormUser",
   data() {
     return {
       user: {
-        nameUser: "",
-        ageUser: "",
-        emailUser: "",
-        sexUser: "",
-        telephoneUser: "",
+        name: "",
+        age: "",
+        email: "",
+        sex: "",
+        telephone: "",
       }
     };
   },
   methods: {
     saveUser() {
-      console.log(this.user)
+      axios.post(`${config.url}/users`, this.user).then((response) => {
+        let newUser = response.data
+        this.$store.commit('saveUser', newUser)
+      })
     }
   }
 };

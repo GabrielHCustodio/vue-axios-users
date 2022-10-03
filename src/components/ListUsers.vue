@@ -10,8 +10,8 @@
         <span id="name">{{ user.name }}</span>
         <span id="age">{{ user.age }} anos</span>
         <span class="espacar"></span>
-        <button class="btn btn-primary btn-sm" title="Editar">
-          <i class="fa fa-pencil-alt"></i>
+        <button class="btn btn-primary btn-sm" title="Mais informações">
+          <i class="fa fa-plus"></i>
         </button>
         <button
           class="btn btn-danger btn-sm"
@@ -28,18 +28,14 @@
 <script>
 import axios from "axios";
 import config from "@/config/config";
+import { mapState } from 'vuex';
 
 export default {
   name: "ListUsers",
-  data() {
-    return {
-      users: [],
-    };
-  },
-  created() {
-    axios.get(`${config.url}/users`).then((response) => {
-      this.users = response.data;
-    });
+  computed: {
+    ...mapState({
+      users: state => state.users
+    })
   },
   methods: {
     deletar(user) {
