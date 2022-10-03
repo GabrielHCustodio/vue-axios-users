@@ -1,6 +1,9 @@
 <template>
   <div>
-    <ul class="list-group d-flex align-items-center justify-content-center mt-3">
+    <ul
+      v-if="users.length >= 1"
+      class="list-group d-flex align-items-center justify-content-center mt-3"
+    >
       <li
         class="list-group-item d-flex align-items-center"
         id="list"
@@ -10,7 +13,11 @@
         <span id="name">{{ user.name }}</span>
         <span id="age">{{ user.age }} anos</span>
         <span class="espacar"></span>
-        <button class="btn btn-primary btn-sm" title="Mais informações">
+        <button
+          class="btn btn-primary btn-sm"
+          title="Mais informações"
+          @click="$router.push({ name: 'user', params: {id: user.id} })"
+        >
           <i class="fa fa-plus"></i>
         </button>
         <button
@@ -22,28 +29,36 @@
         </button>
       </li>
     </ul>
+
+    <div
+      v-else
+      class="d-flex flex-column align-items-center justify-content-center mt-3"
+    >
+      <h4>Não existem usuários cadastrados...</h4>
+      <router-link to="/about">Clique aqui para adicionar</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import config from "@/config/config";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "ListUsers",
   computed: {
     ...mapState({
-      users: state => state.users
-    })
+      users: (state) => state.users,
+    }),
   },
   methods: {
     deletar(user) {
-      axios.delete(`${config.url}/users/${user.id}`, user).then(response => {
-        const index = this.users.findIndex(u => u.id === user.id)
-        this.users.splice(index, 1)
-        console.log(response)
-      })
+      axios.delete(`${config.url}/users/${user.id}`, user).then((response) => {
+        const index = this.users.findIndex((u) => u.id === user.id);
+        this.users.splice(index, 1);
+        console.log(response);
+      });
     },
   },
 };

@@ -1,28 +1,20 @@
 {
   "users": [
     {
-      "name": "Gabriel Custodio",
+      "name": "Gabriel Henrique",
       "age": 22,
-      "sexo": "masculino",
-      "email": "gabriel.email@email.com",
+      "email": "gabriel_henrique@email.com",
+      "sex": "Masculino",
       "telephone": "(35)99876-5432",
       "id": 1
     },
     {
-      "name": "Ana Clara",
-      "age": 20,
-      "sexo": "feminino",
-      "email": "ana_clara.email@email.com",
-      "telephone": "(35)99999-8888",
-      "id": 3
-    },
-    {
-      "name": "Matheus",
-      "age": 8,
-      "email": "matheus@email.com",
+      "name": "Carlos Tavares",
+      "age": 26,
+      "email": "carlos_tavares@email.com",
       "sex": "Masculino",
       "telephone": "(35)98765-4321",
-      "id": 4
+      "id": 2
     }
   ]
 }
