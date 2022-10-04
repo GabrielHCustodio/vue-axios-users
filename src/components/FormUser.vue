@@ -7,7 +7,8 @@
         class="form-control"
         placeholder="Nome completo..."
         required
-        v-model="user.name"
+        v-model.trim="v$.user.name.$model"
+        :class="{ 'is-invalid': v$.user.name.$error }"
       />
     </div>
     <div class="col-sm-5">
@@ -16,8 +17,8 @@
         type="text"
         class="form-control"
         placeholder="Seu melhor email..."
-        required
-        v-model="user.email"
+        v-model.trim="v$.user.email.$model"
+        :class="{ 'is-invalid': v$.user.email.$error }"
       />
     </div>
     <div class="col-sm-3">
@@ -26,8 +27,8 @@
         type="text"
         class="form-control"
         placeholder="Telefone de contato com DDD..."
-        required
-        v-model="user.telephone"
+        v-model.trim="v$.user.telephone.$model"
+        :class="{ 'is-invalid': v$.user.telephone.$error }"
       />
     </div>
     <div class="col-sm-3">
@@ -36,13 +37,17 @@
         type="number"
         class="form-control"
         placeholder="Informe sua idade..."
-        required
-        v-model="user.age"
+        v-model.trim="v$.user.age.$model"
+        :class="{ 'is-invalid': v$.user.age.$error }"
       />
     </div>
     <div class="col-sm-4">
       <label class="form-label">Informe seu sexo</label>
-      <select class="form-select" v-model="user.sex" required>
+      <select 
+        class="form-select"
+        v-model.trim="v$.user.sex.$model"
+        :class="{ 'is-invalid': v$.user.sex.$error }"
+      >
         <option selected disabled value="">Selecione</option>
         <option value="Masculino">Masculino</option>
         <option value="Feminino">Feminino</option>
@@ -60,8 +65,12 @@
 import axios from "axios";
 import config from "@/config/config";
 
+import { useVuelidate } from '@vuelidate/core'
+import { required, minLength, email, between } from "@vuelidate/validators"
+
 export default {
   name: "FormUser",
+  setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       user: {
@@ -73,12 +82,41 @@ export default {
       }
     };
   },
+  validations: {
+    user: {
+      name: {
+        required,
+        minLength: minLength(3)
+      },
+      age: {
+        required,
+        between: between(18, 99)
+      },
+      email: {
+        required,
+        email
+      },
+      sex: {
+        required,
+      },
+      telephone: {
+        required,
+      }
+    }
+  },
   methods: {
     saveUser() {
+      this.validationForm()
       axios.post(`${config.url}/users`, this.user).then((response) => {
         let newUser = response.data
         this.$store.commit('saveUser', newUser)
       })
+    },
+    validationForm() {
+      this.v$.$touch();
+      if (this.v$.$error) {
+        return;
+      }
     }
   }
 };

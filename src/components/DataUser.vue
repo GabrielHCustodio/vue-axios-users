@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex align-items-center justify-content-between m-4">
+    <div class="d-flex align-items-center justify-content-between m-4 mb-5">
       <h1>Mais dados de: {{ user.name }}</h1>
       <button
         class="btn btn-danger btn-sm"
