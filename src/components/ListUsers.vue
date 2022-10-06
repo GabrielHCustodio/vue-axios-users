@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="d-flex align-items-center justify-content-center">
+      <alert-message :message="message" :alert="alert" v-show="message"/>
+    </div>
     <ul
       v-if="users.length >= 1"
       class="list-group d-flex align-items-center justify-content-center mt-3"
@@ -16,7 +19,7 @@
         <button
           class="btn btn-primary btn-sm"
           title="Mais informações"
-          @click="$router.push({ name: 'user', params: {id: user.id} })"
+          @click="$router.push({ name: 'user', params: { id: user.id } })"
         >
           <i class="fa fa-plus"></i>
         </button>
@@ -44,9 +47,19 @@
 import axios from "axios";
 import config from "@/config/config";
 import { mapState } from "vuex";
+import AlertMessage from "@/components/Message.vue";
 
 export default {
   name: "ListUsers",
+  data() {
+    return {
+      message: null,
+      alert: ""
+    };
+  },
+  components: {
+    AlertMessage,
+  },
   computed: {
     ...mapState({
       users: (state) => state.users,
@@ -54,11 +67,19 @@ export default {
   },
   methods: {
     deletar(user) {
-      axios.delete(`${config.url}/users/${user.id}`, user).then((response) => {
-        const index = this.users.findIndex((u) => u.id === user.id);
-        this.users.splice(index, 1);
-        console.log(response);
-      });
+      const confirm = window.confirm(`Deseja deletar o usuário: ${user.name}?`);
+      if (confirm) {
+        axios
+          .delete(`${config.url}/users/${user.id}`, user)
+          .then((response) => {
+            const index = this.users.findIndex((u) => u.id === user.id);
+            this.users.splice(index, 1);
+            console.log(response);
+          });
+      }
+      this.message = `Usuário ${user.name} excluído...`;
+      this.alert = `alert-danger`
+      setTimeout(() => (this.message = ""), 2500);
     },
   },
 };
